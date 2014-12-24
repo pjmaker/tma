@@ -1,0 +1,5 @@
+get maning1second.csv
+report:new ss.pdf
+report:duration StatPact
+report:show
+

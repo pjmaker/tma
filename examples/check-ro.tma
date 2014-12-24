@@ -1,0 +1,13 @@
+#
+# check-ro.tma - checks for Remote Operations tags.
+#
+
+st 2013-6-1T00:00
+
+report:new check-ro.tma
+
+report:header "Unchanging tags"
+check:changing *STWLVL
+
+report:show
+

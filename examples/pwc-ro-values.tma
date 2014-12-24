@@ -1,0 +1,11 @@
+#
+# pwc-ro-values.tma - check various value related rules
+#
+
+report:header "Checking values for tags"
+
+report:plaintext {
+This section has the checks for the values.
+}
+
+check:tag *ET*_LVL { $this < 100 } {$this > 20}

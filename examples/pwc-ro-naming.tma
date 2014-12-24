@@ -1,0 +1,53 @@
+# 
+# pwc-ro-naming.tma - check the R_* tags in order to ensure that they
+#   match the PWC Remote Operations naming conventions.
+#
+
+report:header "Checking Naming Convention for tags"
+
+report:text {
+All PI tags/point must match the SCADA Citect Build Manual and
+this section does some basic checking. 
+
+The following sitenames are supported:
+}
+
+
+set sitenames {}
+
+append sitenames ALIC|ALPU|AMOO|APAT|AREY|ARLP|ATIT| \
+    ENGA| \
+    IKUN|IMAG|IMNP| \
+    KALK|KALT| \
+    LARM| \
+    MLIE| \
+    NGKR|NGUI|NTAR|NTYA|NYIR| \
+    ORWA| \
+    PAPU|PIRL|PMAR| \
+    TARA|TITJ|TITR| \
+    WALR|WALU|WILL|WILO|WUTU| \
+    YUDM|YUEL 
+
+report:text {
+  $sitenames
+}
+
+msg $sitenames
+
+report:text {Out first test checks the parts of each tag name.}
+
+check:show_passed 0
+
+check:name_parts * \
+    R \
+    A|D|K|T \
+    CN|PG|WS|SS \
+    $sitenames
+
+    
+
+
+
+    
+    
+	    

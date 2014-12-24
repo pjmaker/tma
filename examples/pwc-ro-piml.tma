@@ -1,0 +1,47 @@
+# -*-tcl-*-
+#
+# pwc-ro-piml-validation.tma - validate and report on PIML data for PWC
+#
+
+st 2013-5-1T00:00.000
+
+tags:only *APAT* ;# restrict this document to only these tags for testing
+
+check:show_passed 0; # 0 means only show failures in logs, 1= show both.
+
+report:new piml.pdf
+report:header "PIML Data Validation Report"
+report:text {
+  This report is intended to be used in order to validate the PI
+  Manual Logger data within the PWC PI System. Manually captured data
+  is sent via PI Manual Logger to PI points which by convention end
+  with _PIML. 
+}
+
+report:header "Validation Results"
+
+check:changing *_PIML ;# they are being updated
+# check:latest *_PIML ;# last sample was this week
+check:increasing *_HOUR_RUN_PIML 
+
+report:header "Plots of data per site"
+
+var- *
+set cs {}
+foreach t [pi:tags *_PIML] {
+  set ts [pi:site $t]
+  if {$ts eq $cs || $cs eq {}} { ;# same site 
+    get $t 
+    offset_remove $t
+  } else {
+    title $ts
+    report:plot 3i
+    var- *
+    set cs $ts
+  }
+}
+title $ts
+report:plot 3i
+
+report:show
+    

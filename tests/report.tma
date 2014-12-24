@@ -1,0 +1,24 @@
+#
+# some very simple tests for report
+#
+
+report:new test.pdf
+for {set i 0} {$i < 20} {incr i} {
+  report:header "I am important $i"
+  report:text "$i ABCDEF $i GHIKL $i"
+  report:text {I am
+    multiline text, fear
+    me oh son of socrates
+  }   
+  report:text {
+    a very long paraa very long paraa very long paraa very long paraa very long para	a very long paraa very long paraa very long paraa very long paraa very long para a very long paraa very long paraa very long paraa very long paraa very long para a very long paraa very long paraa very long paraq
+  }
+  title "n=$i"
+  report:plot 3i
+  if {($i % 7) == 3} {
+    report:fullplot
+    report:newpage
+  }
+}
+report:show
+exit

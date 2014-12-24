@@ -1,0 +1,14 @@
+#
+# pwc-ro-changing.tma - check that the points are changing
+#
+
+foreach reg {A D K T} {
+  foreach prefix {CN PG WS SS} {
+    report:header "Unchanging tags for R_${region}_${prefix}*"
+    report:text {
+      This section shows the tags that have not changed
+    }
+    check:changing R_${region}_${prefix}*
+  }
+}
+

@@ -1,0 +1,23 @@
+#
+# check.tma - a small data validation module in tma
+#
+
+st 2013-5-1T00:00
+
+check:this R_*_PG_*G*_TOTAL_HOURS_RUN_PIML {
+  $this >= 0 ;#    at least 0 hr run
+} {	
+  $this <= 24 * 7 ;# no more than the whole week
+} 
+
+check:this R_*_PG_*_G*_KWH_PIML {
+  $this >= 0 ;# must be +ve 
+} {
+  check:increasing ;# kWh must always increase
+}
+
+# TODO
+# check units for plausibility
+# summing over site (Total Gen hrs == ..)
+
+# other functions over time

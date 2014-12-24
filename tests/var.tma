@@ -1,0 +1,38 @@
+# -*- mode: tcl; -*-
+#
+# tests for var creation/...
+#
+
+test {[vars] eq {}} ;# in the beginning nothing
+test {[var a] eq "a"} ;# create a single var
+varrename SITE_ "" ;# rename all future variables by renaming SITE_ to ""
+test {[var SITE_bb] eq "bb"}
+test {[vars] eq {a bb}} ;# check thats vars return all variables
+test {[vars b*] eq {bb}} ;# or a subset
+test {[var- *] eq {}} ;# remove all vars
+test {[vars] eq {}} ;# after deleting nothing
+test {[var alpha] eq {alpha}} 
+
+# test default properties for creation
+foreach {p s} [default_properties] {
+  if {$p ne "-color"} {
+    test {[property alpha $p] eq $s}
+  }
+}
+
+test {[var- alpha] eq {}}
+
+test {[var x -name y] eq y} ;# check rename functionallity
+
+test {[st 0] eq 0} 
+test {[et 2037-1-1T00:00.000] eq [time::scan 2037-1-1T00:00.000]} 
+test {[samples y] eq 0}
+
+test {[let y 11 10] eq 11}
+test {[samples y] eq 1}
+test {[let y 8  11] eq 8}
+test {[samples y] eq 2}
+
+
+
+

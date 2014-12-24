@@ -1,0 +1,48 @@
+#
+# check-remote-ops.tma
+#
+
+st 2013-5-1T00:00
+
+report:new check-ro.tma
+
+report:header "Warning: extreme prototype follows"
+
+report:text "This file demonstrates the check and validation we can do"
+
+report:header "Units"
+
+report:text "The following units are used within Remote Operations"
+
+foreach u [pi:all_units] {
+	report:text [string map {{$} {\$}} $u]
+}
+
+report:header "Unchanging Bore Levels"
+check:changing *STWLVL
+
+report:header "Bore Levels"
+report:text "All the STWLVL tags, one per plot"
+
+foreach t [pi:tags *STWLVL] {
+	get $t
+	title [pi:description $t]
+	report:plot 2i
+	var- *
+}
+
+report:header "Elevated Tank Levels"
+
+check:this *ET*_LVL { $this < 100 } {$this > 20}
+
+report:header "Elevated Tank Levels"
+
+var- *
+foreach t [pi:tags *ET_LVL] {
+	get $t
+	report:plot 3i
+	var- *
+}
+
+report:show
+

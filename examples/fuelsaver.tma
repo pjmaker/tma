@@ -1,0 +1,13 @@
+# -*-tcl-*-
+#
+# fuelsaver.tma - a model for a fuel saver.
+#
+
+st 2000-1-1T00:00.000
+et [expr [st] + 3*24*60*60]
+
+random:boundedwalk LoadP
+scale LoadP 500
+offset LoadP 300
+
+

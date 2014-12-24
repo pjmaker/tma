@@ -1,0 +1,26 @@
+# -*-tcl-*-
+#
+# kpi.tma
+#
+
+report:new outage_summary
+
+set year [ask:year]
+set month [ask:month]
+
+st ${year}-${month}-1T00:00.000
+et ${year}-[month:next ${month}]-1-T00:00.000
+
+report:new outage.pdf
+
+foreach $outage [pi:tags R_*_OUT_CNT] {
+  set outage [get $outage -name [pi:site $outage]_[pi:split $outage 4]]
+  offset_remove $outage
+  if {[when# $outage [samples]] == 0} {
+    var- $outage ;# remove empty trends
+  } else {
+    report:text $outage [last# $v] 
+  }
+}
+
+

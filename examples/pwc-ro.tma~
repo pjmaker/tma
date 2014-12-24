@@ -1,0 +1,8 @@
+
+report:new pwc-ro.pdf
+
+source examples/pwc-ro-naming.tma
+source examples/pwc-ro-units.tma
+
+report:show
+

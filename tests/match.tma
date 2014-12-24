@@ -1,0 +1,9 @@
+#
+# match.tma - test out the match string matching function
+# 
+
+test {[match a {a b a c}] eq {a}}
+test {[match * {a b a c}] eq {a b c}}
+test {[match b|c {a b a c}] eq {b c}}
+test {[match b|e {a b a c}] eq {b}}
+exit

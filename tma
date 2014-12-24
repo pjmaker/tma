@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# tma - just run tma on unixen, we use our own runtime to avoid 
+#  problems with older versions of BLT, etc. This is installed in
+#  /opt/tma and is available as a tma-unix-runtime package.
+#
+# 
+
+exec /opt/tma/bin/bltwish25 `dirname $0`/tma.tcl $@

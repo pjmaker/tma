@@ -1,0 +1,12 @@
+
+st 2013-4-1T00:00
+
+report:new pwc-ro.pdf
+
+source examples/pwc-ro-naming.tma
+source examples/pwc-ro-units.tma
+source examples/pwc-ro-changing.tma
+source examples/pwc-ro-values.tma
+
+report:show
+

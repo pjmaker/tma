@@ -1,0 +1,8 @@
+#
+# pwc-ro-unchanging.tma - a list of unchanging data points
+#
+
+foreach reg {A D K T} {
+  foreach prefix {CN PG WS SS} {
+    report:header "Unchanging tags for R_$region_$prefix*"
+    check:changing R_${region}_${prefix}*

@@ -1,0 +1,17 @@
+# -*- tcl-mode; -*-
+
+# check all tags for valid units
+
+report:new check-pwc-units.pdf
+set valid_units {
+  {} {$AUS} % Amps dB dBm deg DegC degC g/cm3 g/hr h hh:mm:ss hrn 
+  hrs Hz kg kL kPa kVAr kW kW/Min Kwh kWh l l/h l/kWh 
+  l/s litres lt/h lt/hr lt/s m m3/hr meters metres 
+  mg/L mg/l min mJ/cm ML mL mm mS/cm MWh nst NTU ntu 
+  o'clock ohm/cm PH pH ppm psi PSU sec uS uS/cm V Volts W Watts
+}
+
+check:units * {*}$valid_units
+report:show
+
+
