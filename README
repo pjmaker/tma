@@ -1,0 +1,10 @@
+
+ README - for TMA which is a time series data visualiser/analyser/tool/..
+
+TMA is a time series data visualiser/analyser which can be used for:
+
+  * Visualizing time series data (i.e. wavy lines)
+  * Analysing time series data, e.g. what is the time series sum of
+    the difference between A and B.
+  * Scriptable so you don't need to do it again and again and ....
+
