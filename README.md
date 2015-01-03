@@ -15,6 +15,6 @@ for archival.
 All of the above are scriptable in TCL (http://wiki.tcl.tk).
 
 In order to install you need one of the runtimes such as
-<http://githib/com/pjmaker/tma-unix-rt> or
-<http://github/com/pjmaker/tma-windoze-rt>. 
+<http://github.com/pjmaker/tma-unix-rt> or
+<http://github.com/pjmaker/tma-windoze-rt>. 
 
