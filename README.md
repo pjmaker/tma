@@ -12,6 +12,25 @@ a ramp filter.
 * And to generate PDF based reports of the final results, typically
 for archival.
 
+The following data formats are supported:
+
+* OSIsoft PI - from a server via the included .exe files.
+* ''*.smst'' files - files from OSIsoft PI SMT tools export
+* ''*.pi'' files - raw OSIsoft PI files extracted by PITool.exe
+* ''*.csv'' in ASIM format  
+* ''*.csv'' in Powercorp SMStrends export format
+* ''*.nc'' in ACEP NetCDF format
+
+The preferred format is ''*.csv'' using ASIM format which 
+looks:
+
+''''
+t,Gen1P
+100,10
+110.4,12
+190,7
+''''
+
 All of the above are scriptable in TCL (http://wiki.tcl.tk).
 
 In order to install you need one of the runtimes such as
