@@ -2,7 +2,7 @@
 
 A time series data analysis display and analysis tool orginally
 designed for reporting on power systems. One application is 
-within the ASIM modelling framework (http://githhub.com/ThinkOfaNumber/Asim).
+within the ASIM modelling framework (http://github.com/ThinkOfaNumber/Asim).
 Its typically used to:
 
 * Display real time data which is normally timestamped rather than 
