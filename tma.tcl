@@ -7,7 +7,7 @@
 #
 
 # 
-# Copyright 2013 Phil Maker <philip.maker@gmail.com>,<pjm@gnu.org>
+# Copyright 2013-15 Phil Maker <philip.maker@gmail.com>
 #
 # This file is part of Tma.  Tma is free software: you can
 # redistribute it and/or modify it under the terms of the GNU
@@ -84,6 +84,7 @@ foreach {o v d} {
   -pitag_exe "PItags.exe" "Program to read PI attributes from the server"
   -pitool_exe "PItool.exe" "Program that connect to the PI Server"
   -pi_server "172.16.12.140" "PI Server IP address/name"
+  -NaN {} "IEEE NaN values are mapped to {} nothing or some other number"
   -nc_reader "acep-csv" "Program to read ACEP NetCDF (.nc) files into CSV"
   -check_log 1 "log checking information to a file"
   -console 1 "Display the console on startup"
@@ -284,6 +285,15 @@ command property {var prop {def nodefault}} {return the value for property p} {
 }
 
 command let {v what when} {v has value what at time when} {
+  # puts "** ::commands::${v}_ append '$what'"
+  if {[expr $what != $what]} { # nan -> $::options(-NaN)
+    if {$::options(-NaN) == {}} { ;# just drop the values
+      return 
+    }
+    set what $::options(-NaN)
+  } 
+  # puts "*2 ::commands::${v}_ append $what"
+
   # puts "let $v $what [time::format $when] [time::format [st]]"
   if {[samples $v] == 0} { # no data yet 
     let0 $v $what $when
@@ -409,8 +419,8 @@ proc time::scan {s} {
   if {[string is double $s]} {
     return $s
   }
-  regexp {([^.]*)([.][0-9]+)?$} $s -> ts ms
-  if {[catch "clock scan $ts -format %Y-%m-%dT%H:%M:%S" t0]} {
+  regexp {([^.]*)([.][0-9]+)?[+]([0-9][0-9]:[0-9][0-9])?$} $s -> ts ms tz
+  if {[catch "clock scan $ts -format %Y-%m-%dT%H:%M:%S$tz" t0]} {
     set t0 [clock scan $ts]
   }
   set r [expr $t0 + 0$ms]
