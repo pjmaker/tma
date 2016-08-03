@@ -22,7 +22,7 @@ The following data formats are supported:
 * ``*.nc`` in ACEP NetCDF format
 
 The preferred format is ''*.csv'' using ASIM format which 
-looks:
+looks like:
 
 ````
 t,Gen1P
